@@ -1,5 +1,5 @@
 from google.adk.agents import LlmAgent
-from animal_voice_agent.tool import search_animal_youtube, get_animal_location_map
+from animal_voice_agent.tools import search_animal_youtube, get_animal_location_map
 from animal_voice_agent.config import LLM_MODEL_ID
 
 
@@ -24,23 +24,19 @@ _prompt = """
         # 3. **応答**:
         #    - 分かりやすい日本語で、整理した内容をまとめて答えてください。
         #    - 子どもにも理解できるレベルの平易な説明を心がけてください。
+        #    - toolで出力されてきたURLはそのまま貼らず、ある文字のリンク形式で提示してください。
+        # 例： [犬の鳴き声動画](https://www.youtube.com/xxxxxx)
 
     # **ツール使用の要約:**
 
         # * **search_animal_youtube:** 動物の鳴き声に関するYouTube動画を検索します。
         # * **get_animal_location_map:** 那覇空港から指定された動物が見られる場所までのGoogle Mapsルートリンクを生成します。
-        
-        # * **挨拶/範囲外:** 
-        #   - 動物の鳴き声と関係ない質問には、その旨を伝えたうえで、
-        #     「知りたい動物の鳴き声を教えてください」のように、質問の例を示してください。
-        #   - 動物名があいまいな場合は、「どの動物のことかもう少し詳しく教えてください」と丁寧に確認してください。
 
 <TASK>
 
 <CONSTRAINTS>
     * **回答は日本語で作成してください。**
     * **よく分からない動物に関しては、想像で補わず、その旨を正直に伝えてください。**
-    * **動物の鳴き声に関する情報を中心に、不要に話題を広げないでください。**
 </CONSTRAINTS>
 """
 
