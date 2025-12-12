@@ -3,7 +3,7 @@
 ## 実行方法
 ターミナルより以下のコマンドを実行します。
 ```
-git clone 
+git clone https://github.com/your-username/agent-animal-voice.git
 curl -LsSf https://astral.sh/uv/install.sh | sh
 export PATH="$HOME/.local/bin:$PATH"
 uv venv -p 3.13
