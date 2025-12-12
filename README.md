@@ -34,7 +34,7 @@ Agentがtoolの使用の有無も含めて思考し、回答を返します。
 参考：
 - repository: https://github.com/google/adk-python　
 - tutorial: https://codelabs.developers.google.com/your-first-agent-with-adk#0
-- adk we: https://docs.cloud.google.com/agent-builder/- agent-engine/sessions/manage-sessions-adk
+- adk web: https://docs.cloud.google.com/agent-builder/agent-engine/sessions/manage-sessions-adk
 - tool: https://google.github.io/adk-docs/tools/built-in-tools/
 - adk web: https://github.com/google/adk-web
 - adk examples: https://github.com/google/adk-samples
