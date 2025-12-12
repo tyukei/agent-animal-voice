@@ -42,11 +42,10 @@ def search_animal_youtube(animal_name: str) -> str:
     return f"https://www.youtube.com/watch?v={vid}"
 
 
-def get_animal_location_map(animal_name: str, location_name: str) -> str:
+def get_animal_location_map(location_name: str) -> str:
     """那覇空港から指定された場所までのGoogle Mapsルートリンクを生成します。
     
     Args:
-        animal_name: 動物の名前（例: イリオモテヤマネコ、ヤンバルクイナ、ジンベエザメ）
         location_name: 目的地の名前（例: 美ら海水族館、ヤンバルクイナ生態展示学習施設）
         
     Returns:
