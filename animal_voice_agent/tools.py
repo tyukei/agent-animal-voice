@@ -31,7 +31,13 @@ def search_animal_youtube(animal_name: str) -> str:
     search_query = f"{animal_name} 鳴き声"
     encoded_query = quote(search_query)
     youtube_search_url = f"https://www.youtube.com/results?search_query={encoded_query}"
-    html = requests.get(youtube_search_url, timeout=10).text
+    try:
+        response = requests.get(youtube_search_url, timeout=10)
+        if response.status_code != 200:
+            return youtube_search_url
+        html = response.text
+    except requests.exceptions.RequestException:
+        return youtube_search_url
 
     # 検索結果ページ内の watch?v=VIDEO_ID を雑に1個拾う（壊れやすい）
     m = re.search(r"watch\?v=([a-zA-Z0-9_-]{11})", html)
