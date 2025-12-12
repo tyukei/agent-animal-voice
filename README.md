@@ -9,8 +9,8 @@ export PATH="$HOME/.local/bin:$PATH"
 uv venv -p 3.13
 source .venv/bin/activate
 uv sync
-cp animal_voice/.env.sample animal_voice/.env
-echo "GOOGLE_API_KEY=your_google_api_key" >> animal_voice/.env
+cp animal_voice_agent/.env.example animal_voice_agent/.env
+echo "GOOGLE_API_KEY=your_google_api_key" >> animal_voice_agent/.env
 adk web
 ```
 
