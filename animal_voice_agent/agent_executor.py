@@ -6,7 +6,6 @@ from google.adk.memory import InMemoryMemoryService
 from google.adk.artifacts import InMemoryArtifactService
 from google.adk.auth.credential_service.in_memory_credential_service import InMemoryCredentialService
 from google.adk.a2a.utils.agent_card_builder import AgentCardBuilder
-# ADKで作成したAgentをインポート
 from animal_voice_agent.agent import root_agent
 
 async def create_runner() -> Runner:
@@ -21,7 +20,6 @@ async def create_runner() -> Runner:
         credential_service=InMemoryCredentialService(),
     )
 
-
 # A2A Agent Executorを生成するビルダー関数
 def agent_executor_builder():
     return A2aAgentExecutor(
@@ -31,7 +29,6 @@ def agent_executor_builder():
 # Agent Cardを生成する関数
 async def create_agent_card() -> AgentCard:
     agent_card = await AgentCardBuilder(agent=root_agent).build()
-    # A2aAgentが期待するtransport形式に変更
     agent_card_dict = agent_card.model_dump()
     agent_card_dict['preferredTransport'] = 'HTTP+JSON'
     return AgentCard.model_validate(agent_card_dict)

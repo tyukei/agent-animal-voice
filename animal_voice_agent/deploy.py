@@ -1,10 +1,4 @@
 import asyncio
-import os
-import sys
-
-# Add project root to path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 import vertexai
 from google.genai import types
 from vertexai.preview.reasoning_engines import A2aAgent
@@ -40,8 +34,8 @@ async def main():
             "display_name": a2a_agent.agent_card.name,
             "description": a2a_agent.agent_card.description,
             "requirements": [
-                "google-cloud-aiplatform[adk,agent-engines]>=1.94.0",
-                "google-adk>=0.5.0",
+                "google-cloud-aiplatform[adk,agent_engines]>=1.130.0",
+                "google-adk==1.21.0",
                 "google-genai>=1.55.0",
                 "a2a-sdk>=0.3.21",
                 "cloudpickle>=3.0,<4",
