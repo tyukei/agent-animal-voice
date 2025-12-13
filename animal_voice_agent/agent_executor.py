@@ -27,8 +27,33 @@ def agent_executor_builder():
     )
 
 # Agent Cardを生成する関数
-async def create_agent_card() -> AgentCard:
-    agent_card = await AgentCardBuilder(agent=root_agent).build()
+async def create_agent_card(agent_engine_id: str = None) -> AgentCard:
+    """
+    エージェントカードを生成します。
+
+    Args:
+        agent_engine_id: デプロイ後のAgent Engine ID（オプション）
+                        指定された場合、正しいURLが設定されます。
+    """
+    from animal_voice_agent.config import PROJECT_ID, LOCATION
+
+    # agent_engine_idが指定されている場合は正しいURLを設定
+    # 指定されていない場合はプレースホルダーを使用（デプロイ前）
+    if agent_engine_id:
+        rpc_url = f'https://{LOCATION}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{LOCATION}/reasoningEngines/{agent_engine_id}/a2a'
+    else:
+        # デプロイ前のプレースホルダー
+        # 注意: この値はデプロイ後にAgent Engine IDに置き換える必要があります
+        rpc_url = f'https://{LOCATION}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{LOCATION}/reasoningEngines/{{AGENT_ENGINE_ID}}/a2a'
+
+    # AgentCardBuilderにrpc_urlを渡す
+    agent_card = await AgentCardBuilder(
+        agent=root_agent,
+        rpc_url=rpc_url
+    ).build()
+
+    # preferredTransportを設定
     agent_card_dict = agent_card.model_dump()
     agent_card_dict['preferredTransport'] = 'HTTP+JSON'
+
     return AgentCard.model_validate(agent_card_dict)
